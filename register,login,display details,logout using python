@@ -1,0 +1,58 @@
+registered_users = {}
+def register():
+    print("Please enter your details to register")
+    username = input("Enter username: ")
+    rollno = input("enter rollno: ")
+    email = input("enter an email address: ")
+    password = input("Enter password: ")
+    registered_users[rollno] = password
+    print("registration successful!")
+def login():
+    print("Please enter your login details:")
+    rollno = input("Enter rollno: ")
+    password = input("Enter password: ")
+    if rollno in registered_users and registered_users[rollno] == password:
+        print("Login successful!")
+        return True
+    else:
+        print("Invalid username or password.")
+        return False
+def display_details():
+    print("User Details:")
+    for rollno, password in registered_users.items():
+        print(f"rollno: {rollno}, Password: {password}")
+
+def logout():
+    print("Logout successful")
+def main():
+    while True:
+        print("\nWelcome !")
+        print("1. Register")
+        print("2. Login")
+        print("3. Display Details")
+        print("4. Logout")
+        choice = input("Enter your choice: ")
+        if choice == '1':
+            register()
+        elif choice == '2':
+            if login():
+                while True:
+                    n = input("\nChoose an action (1. Display Details, 2. Logout): ")
+                    if n == '1':
+                        display_details()
+                    elif n == '2':
+                        logout()
+                        break
+                    else:
+                        print("Invalid")
+        elif choice == '3':
+            display_details()
+        elif choice == '4':
+            logout()
+            break
+        else:
+            print("Invalid choice")
+
+
+if __name__ == "__main__":
+    main()
